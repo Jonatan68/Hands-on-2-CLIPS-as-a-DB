@@ -5,14 +5,8 @@
     (multislot sintomas)
 )
 
-(deffacts base_conocimientos
-    (enfermedad (id 1) (nombre "Gripe") (signos fiebre dolor-de-garganta) (sintomas tos congestion-nasal))
-    (enfermedad (id 2) (nombre "Resfriado") (signos congestion-nasal estornudos) (sintomas tos dolor-de-cabeza))
-    (enfermedad (id 3) (nombre "Influenza") (signos fiebre tos) (sintomas dolor-muscular dolor-de-cabeza))
-    (enfermedad (id 4) (nombre "COVID-19") (signos fiebre falta-de-gusto) (sintomas tos dificultad-respiratoria))
-    (enfermedad (id 5) (nombre "Bronquitis") (signos tos fiebre) (sintomas dificultad-respiratoria dolor-en-el-pecho))
-    (enfermedad (id 6) (nombre "Asma") (signos dificultad-respiratoria silbido-en-el-pecho) (sintomas tos opresion-en-el-pecho))
-)
+(deffacts base_conocimientos (enfermedad (id 1) (nombre "Gripe") (signos fiebre dolor-de-garganta) (sintomas tos congestion-nasal)) (enfermedad (id 2) (nombre "Resfriado") (signos congestion-nasal estornudos) (sintomas tos dolor-de-cabeza)) (enfermedad (id 3) (nombre "Influenza") (signos fiebre tos) (sintomas dolor-muscular dolor-de-cabeza)) (enfermedad (id 4) (nombre "COVID-19") (signos fiebre falta-de-gusto) (sintomas tos dificultad-respiratoria)) (enfermedad (id 5) (nombre "Bronquitis") (signos tos fiebre) (sintomas dificultad-respiratoria dolor-en-el-pecho)) (enfermedad (id 6) (nombre "Asma") (signos dificultad-respiratoria silbido-en-el-pecho) (sintomas tos opresion-en-el-pecho)))
+
 
 (defrule consultar-enfermedad
     =>
@@ -41,4 +35,6 @@
     (retract ?input)
     (printout t "Enfermedad con ID " ?id " eliminada." crlf)
 )
+
+
 
