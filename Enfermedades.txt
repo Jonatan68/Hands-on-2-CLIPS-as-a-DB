@@ -1,0 +1,44 @@
+(deftemplate enfermedad
+    (slot id)
+    (slot nombre)
+    (multislot signos)
+    (multislot sintomas)
+)
+
+(deffacts base_conocimientos
+    (enfermedad (id 1) (nombre "Gripe") (signos fiebre dolor-de-garganta) (sintomas tos congestion-nasal))
+    (enfermedad (id 2) (nombre "Resfriado") (signos congestion-nasal estornudos) (sintomas tos dolor-de-cabeza))
+    (enfermedad (id 3) (nombre "Influenza") (signos fiebre tos) (sintomas dolor-muscular dolor-de-cabeza))
+    (enfermedad (id 4) (nombre "COVID-19") (signos fiebre falta-de-gusto) (sintomas tos dificultad-respiratoria))
+    (enfermedad (id 5) (nombre "Bronquitis") (signos tos fiebre) (sintomas dificultad-respiratoria dolor-en-el-pecho))
+    (enfermedad (id 6) (nombre "Asma") (signos dificultad-respiratoria silbido-en-el-pecho) (sintomas tos opresion-en-el-pecho))
+)
+
+(defrule consultar-enfermedad
+    =>
+    (printout t "Lista de enfermedades:" crlf)
+    (printout t "ID Nombre" crlf)
+    (do-for-all-facts ((?e enfermedad)) TRUE
+        (printout t ?e:id " " ?e:nombre crlf)
+    )
+)
+
+(defrule consultar-signos-y-sintomas
+    =>
+    (printout t "Lista de signos y síntomas:" crlf)
+    (do-for-all-facts ((?e enfermedad)) TRUE
+        (printout t "Enfermedad: " ?e:nombre crlf)
+        (printout t "Signos: " ?e:signos crlf)
+        (printout t "Síntomas: " ?e:sintomas crlf)
+        (printout t "" crlf)
+    )
+)
+
+(defrule eliminar-enfermedad
+    (declare (salience -10)) ; Para asegurar que se ejecute antes de las otras reglas
+    ?input <- (enfermedad (id ?id))
+    =>
+    (retract ?input)
+    (printout t "Enfermedad con ID " ?id " eliminada." crlf)
+)
+
